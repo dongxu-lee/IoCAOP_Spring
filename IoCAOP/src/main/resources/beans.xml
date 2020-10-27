@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--根标签beans，里面配置多个bean子标签，每一个bean子标签都代表一个类的配置-->
+<beans>
+    <!-- id标识对象，class是类的全限定类名 -->
+    <bean id="userDao" class="com.ldx.dao.impl.UserDaoImpl"></bean>
+    <bean id="userService" class="com.ldx.service.impl.UserServiceImpl">
+        <!-- set + name之后锁定到传值的set方法了，通过反射技术可以调用该方法出入对应的值 -->
+        <property name="UserDao" ref="userDao"></property>
+    </bean>
+</beans>
