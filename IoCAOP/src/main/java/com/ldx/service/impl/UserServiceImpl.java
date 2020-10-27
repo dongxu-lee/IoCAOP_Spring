@@ -18,7 +18,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserById(int id) {
+    public User getUserById(int id) throws Exception {
         return userDao.findById(id);
+    }
+
+    @Override
+    public int updateUserById(User user) throws Exception {
+        return userDao.updateById(user);
     }
 }
