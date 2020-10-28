@@ -10,14 +10,14 @@ import java.sql.SQLException;
  */
 public class ConnectionUtils {
 
-    private ConnectionUtils() {}
-
-    private static ConnectionUtils connectionUtils = new ConnectionUtils();
-    //保证每个dao实现类取到的ConnectionUtils都是单例的，
-    // 进而保证取到的threadLocal都是同一个，其中的connection也就是同一个
-    public static ConnectionUtils getInstance() {
-        return connectionUtils;
-    }
+//    private ConnectionUtils() {}
+//
+//    private static ConnectionUtils connectionUtils = new ConnectionUtils();
+//    //保证每个dao实现类取到的ConnectionUtils都是单例的，
+//    // 进而保证取到的threadLocal都是同一个，其中的connection也就是同一个
+//    public static ConnectionUtils getInstance() {
+//        return connectionUtils;
+//    }
 
     private ThreadLocal<Connection> threadLocal = new ThreadLocal<>(); //存储当前线程的连接
 

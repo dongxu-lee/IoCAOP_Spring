@@ -18,7 +18,7 @@ import java.util.Map;
 public class BeanFactory {
 
     /**
-     * 任务一：读取解析xml，通过反射技术实例化对象并且存储待用（amp集合）
+     * 任务一：读取解析xml，通过反射技术实例化对象并且存储待用（map集合）
      * 任务二：对外提供获取实例对象的接口（根据id获取）
      */
     private static Map<String, Object> map = new HashMap<>(); //存储对象
@@ -46,6 +46,11 @@ public class BeanFactory {
                 map.put(id, o);
 
             }
+
+            /**
+             * 对于依赖bean的实例化，这里只是实现了set方法的实例化，其他的如构造函数，工厂等没有实现
+             * 其实也可以参考上面的，使用反射实例化
+             * */
 
             // 实例化完成之后需要维护对象的依赖关系
             //检查哪些对象需要传值输入，根据他的配置，传入相应的值

@@ -4,6 +4,7 @@ import com.ldx.beans.factory.BeanFactory;
 import com.ldx.dao.UserDao;
 import com.ldx.pojo.User;
 import com.ldx.service.UserService;
+import com.ldx.utils.TransactionManager;
 
 public class UserServiceImpl implements UserService {
 
@@ -24,6 +25,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int updateUserById(User user) throws Exception {
-        return userDao.updateById(user);
+        int i = 0;
+//        try {
+//            //开启事务
+//            TransactionManager.getInstance().beginTransaction();
+            i = userDao.updateById(user);
+            //int x = 1/0;
+            User user1 = new User();
+            user1.setId(user.getId());
+            user1.setUsername("error");
+            userDao.updateById(user1);
+//            TransactionManager.getInstance().commit();
+//        }catch (Exception e) {
+//            e.printStackTrace();
+//            TransactionManager.getInstance().rollback();
+//            throw e;
+//        }
+        return i;
     }
 }

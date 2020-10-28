@@ -2,9 +2,25 @@
 <!--根标签beans，里面配置多个bean子标签，每一个bean子标签都代表一个类的配置-->
 <beans>
     <!-- id标识对象，class是类的全限定类名 -->
-    <bean id="userDao" class="com.ldx.dao.impl.UserDaoImpl"></bean>
+    <bean id="userDao" class="com.ldx.dao.impl.UserDaoImpl">
+        <property name="ConnectionUtils" ref="connectionUtils" />
+    </bean>
     <bean id="userService" class="com.ldx.service.impl.UserServiceImpl">
         <!-- set + name之后锁定到传值的set方法了，通过反射技术可以调用该方法出入对应的值 -->
         <property name="UserDao" ref="userDao"></property>
     </bean>
+<!-- 新增bean -->
+    <bean id="connectionUtils" class="com.ldx.utils.ConnectionUtils"></bean>
+
+    <!-- 事务控制 -->
+    <bean id="transactionManager" class="com.ldx.utils.TransactionManager">
+        <property name="ConnectionUtils" ref="connectionUtils" />
+    </bean>
+
+    <!-- 代理对象 -->
+    <bean id="proxyFactory" class="com.ldx.proxy.ProxyFactory">
+        <property name="TransactionManager" ref="transactionManager"/>
+    </bean>
+
+
 </beans>
